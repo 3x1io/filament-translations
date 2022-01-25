@@ -25,7 +25,7 @@
     "require": {
         "php": "^8.0",
         "filament/filament": "^2.9",
-        "spatie/laravel-translation-loader": "^2.8",
+        "spatie/laravel-translation-loader": "^2.7",
         "spatie/laravel-package-tools": "^1.10"
     },
     "config": {
