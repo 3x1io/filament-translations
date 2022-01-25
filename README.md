@@ -17,6 +17,18 @@ php artisan vendor:publish --tag="filament-translations"
 php artisan migrate
 ```
 
+In `config/app.php` (Laravel) or `bootstrap/app.php` (Lumen) you should replace Laravel's translation service provider
+
+```php
+Illuminate\Translation\TranslationServiceProvider::class,
+```
+
+by the one included in this package:
+
+```php
+Spatie\TranslationLoader\TranslationServiceProvider::class,
+```
+
 ## Add Language Middleware
 
 go to app/Http/Kernal.php and add new middleware to $middlewareGroups
