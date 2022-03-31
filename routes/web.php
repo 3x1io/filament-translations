@@ -14,19 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin/change', function () {
+Route::get('admin/translations/change', function () {
     $user = User::find(auth()->user()->id);
 
-    if ($user->lang === 'ar') {
-        $user->lang = 'en';
+    $langArray = config('filament-translations.switcher');
+
+    if ($user->lang === $langArray[0]) {
+        $user->lang = $langArray[1];
         $user->save();
-    } else if ($user->lang === 'en') {
-        $user->lang = 'ar';
+    } else {
+        $user->lang = $langArray[0];
         $user->save();
     }
 
     session()->flash('notification', [
-        'message' => __("Language Updated To " . $user->lang),
+        'message' => __(trans('translation.notification') . $user->lang),
         'status' => "success",
     ]);
 

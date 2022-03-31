@@ -12,34 +12,43 @@ use Spatie\LaravelPackageTools\Package;
 
 class FilamentTranslationsProvider extends PluginServiceProvider
 {
-    public static string $name = 'filament-translations';
-
     public function configurePackage(Package $package): void
     {
         $package->name('filament-translations');
     }
 
+    protected array $resources = [
+        TranslationResource::class,
+    ];
+
     public function boot(): void
     {
-        Filament::registerNavigationItems([
-            NavigationItem::make()
-                ->group('Translations')
-                ->icon('heroicon-o-translate')
-                ->label('Change Language')
-                ->sort(10)
-                ->url(url('admin/change')),
-        ]);
+        parent::boot();
 
-        Filament::registerNavigationGroups([
-            'Translations'
-        ]);
+        if (config('filament-translations.show-switcher')) {
+            Filament::registerNavigationItems([
+                NavigationItem::make()
+                    ->group(config('filament-translations.languages-switcher-menu.group'))
+                    ->icon(config('filament-translations.languages-switcher-menu.icon'))
+                    ->label(trans('translation.menu'))
+                    ->sort(config('filament-translations.languages-switcher-menu.sort'))
+                    ->url(url('admin/translations/change')),
+            ]);
+
+            Filament::registerNavigationGroups([
+                config('filament-translations.languages-switcher-menu.group')
+            ]);
+        }
 
         $this->publishes([
             __DIR__ . '/../database/migrations' => base_path('database/migrations'),
             __DIR__ . '/../publish' => app_path(),
-            __DIR__ . '/../config' => config_path(),
             __DIR__ . '/../resources' => resource_path(),
         ], 'filament-translations');
+
+        $this->publishes([
+            __DIR__ . '/../config' => config_path(),
+        ], 'filament-translations-config');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
     }
