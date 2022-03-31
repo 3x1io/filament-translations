@@ -1,6 +1,6 @@
 # Filament Translations Manager
 
-Manage your translation with DB and cache, you can scan your languages tags like trans(), __(), and get the string inside and translate them use UI.
+Manage your translation with DB and cache, you can scan your languages tags like `trans()`, `__()`, and get the string inside and translate them use UI.
 
 this plugin is build in [spatie/laravel-translation-loader](https://github.com/spatie/laravel-translation-loader)
 
