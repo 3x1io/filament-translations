@@ -1,4 +1,4 @@
-![Screenshot of Login](./art/cover.png)
+![Screenshot of Login](./arts/cover.png)
 
 # Filament Translations
 
@@ -9,9 +9,9 @@ this plugin is build in [spatie/laravel-translation-loader](https://github.com/s
 
 ## Screenshots
 
-![Screenshot of list](./art/list.png)
-![Screenshot of settings](./art/setting.png)
-![Screenshot of edit](./art/edit.png)
+![Screenshot of list](./arts/list.png)
+![Screenshot of settings](./arts/setting.png)
+![Screenshot of edit](./arts/edit.png)
 
 
 ## Installation
