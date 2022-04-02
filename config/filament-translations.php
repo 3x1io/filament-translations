@@ -25,7 +25,8 @@ return [
     */
     "locals" => [
         "en" => "English",
-        "ar" => "Arabic"
+        "ar" => "Arabic",
+        "pt_BR" => "Português (Brasil)",
     ],
 
     /*
@@ -48,7 +49,8 @@ return [
     */
     "switcher" => [
         "ar",
-        "en"
+        "en",
+        "pt_BR",
     ],
 
     /*
