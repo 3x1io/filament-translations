@@ -88,7 +88,7 @@ class TranslationResource extends Resource
 
     public static function getPages(): array
     {
-        if (config('filament-translations.modal-resource')) {
+        if (config('filament-translations.modal')) {
             return [
                 'index' => Pages\ManageTranslations::route('/'),
             ];
