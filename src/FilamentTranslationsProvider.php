@@ -41,8 +41,6 @@ class FilamentTranslationsProvider extends PluginServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../database/migrations' => base_path('database/migrations'),
-            __DIR__ . '/../publish' => app_path(),
             __DIR__ . '/../resources' => resource_path(),
         ], 'filament-translations');
 
@@ -51,5 +49,6 @@ class FilamentTranslationsProvider extends PluginServiceProvider
         ], 'filament-translations-config');
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 }
