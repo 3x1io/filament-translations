@@ -50,7 +50,6 @@ return [
     "switcher" => [
         "ar",
         "en",
-        "pt_BR",
     ],
 
     /*

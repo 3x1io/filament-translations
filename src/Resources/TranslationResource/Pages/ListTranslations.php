@@ -14,6 +14,8 @@ class ListTranslations extends ListRecords
 
     protected static string $resource = TranslationResource::class;
 
+    public $language;
+
     protected function getTitle(): string
     {
         return trans('translation.title');
@@ -41,16 +43,11 @@ class ListTranslations extends ListRecords
     {
         $user = User::find(auth()->user()->id);
 
-        if ($user->lang === 'ar') {
-            $user->lang = 'en';
-            $user->save();
-        } else if ($user->lang === 'en') {
-            $user->lang = 'ar';
-            $user->save();
-        }
+        $user->lang = $this->language;
+        $user->save();
 
         session()->flash('notification', [
-            'message' => __("Language Updated To " . $user->lang),
+            'message' => __(trans('translation.notification') . $user->lang),
             'status' => "success",
         ]);
 

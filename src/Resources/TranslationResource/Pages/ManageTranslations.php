@@ -15,6 +15,8 @@ class ManageTranslations extends ManageRecords
 {
     protected static string $resource = TranslationResource::class;
 
+    public $language;
+
     protected function getTitle(): string
     {
         return trans('translation.title');
@@ -47,13 +49,8 @@ class ManageTranslations extends ManageRecords
     {
         $user = User::find(auth()->user()->id);
 
-        if ($user->lang === 'ar') {
-            $user->lang = 'en';
-            $user->save();
-        } else if ($user->lang === 'en') {
-            $user->lang = 'ar';
-            $user->save();
-        }
+        $user->lang = $this->language;
+        $user->save();
 
         session()->flash('notification', [
             'message' => __(trans('translation.notification') . $user->lang),
