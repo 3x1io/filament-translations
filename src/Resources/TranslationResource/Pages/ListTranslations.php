@@ -14,8 +14,6 @@ class ListTranslations extends ListRecords
 
     protected static string $resource = TranslationResource::class;
 
-    public $language;
-
     protected function getTitle(): string
     {
         return trans('translation.title');
@@ -35,23 +33,20 @@ class ListTranslations extends ListRecords
                         ->options(config('filament-translations.locals'))
                         ->required(),
                 ])
-                ->action('settings'),
+                ->action(function (array $data): void {
+                    $user = User::find(auth()->user()->id);
+
+                    $user->lang = $data['language'];
+                    $user->save();
+
+                    session()->flash('notification', [
+                        'message' => __(trans('translation.notification') . $user->lang),
+                        'status' => "success",
+                    ]);
+
+                    redirect()->to('admin/translations');
+                }),
         ];
-    }
-
-    public function settings(): void
-    {
-        $user = User::find(auth()->user()->id);
-
-        $user->lang = $this->language;
-        $user->save();
-
-        session()->flash('notification', [
-            'message' => __(trans('translation.notification') . $user->lang),
-            'status' => "success",
-        ]);
-
-        redirect()->to('admin/translations');
     }
 
     public function scan()
