@@ -27,6 +27,7 @@ return [
         "en" => "English",
         "ar" => "Arabic",
         "pt_BR" => "Português (Brasil)",
+        "my" => "Burmese"
     ],
 
     /*

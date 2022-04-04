@@ -44,7 +44,7 @@ Spatie\TranslationLoader\TranslationServiceProvider::class,
 
 ## Add Language Middleware
 
-go to app/Http/Kernal.php and add new middleware to $middlewareGroups
+go to app/Http/Kernel.php and add new middleware to $middlewareGroups
 
 ```php
     'web' => [
