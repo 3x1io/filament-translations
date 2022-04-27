@@ -34,7 +34,7 @@ class FilamentTranslationsProvider extends PluginServiceProvider
                     ->icon(config('filament-translations.languages-switcher-menu.icon'))
                     ->label(trans('filament-translations::translation.menu'))
                     ->sort(config('filament-translations.languages-switcher-menu.sort'))
-                    ->url(url('admin/translations/change')),
+                    ->url(url(config('filament-translations.languages-switcher-menu.url'))),
             ]);
 
             Filament::registerNavigationGroups([

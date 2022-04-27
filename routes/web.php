@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('admin/translations/change', function () {
+Route::get(config('filament-translations.languages-switcher-menu.url'), function () {
     $user = User::find(auth()->user()->id);
 
     $langArray = config('filament-translations.switcher');
@@ -28,7 +28,7 @@ Route::get('admin/translations/change', function () {
     }
 
     session()->flash('notification', [
-        'message' => __(trans('translation.notification') . $user->lang),
+        'message' => __(trans('filament-translations::translation.notification')),
         'status' => "success",
     ]);
 

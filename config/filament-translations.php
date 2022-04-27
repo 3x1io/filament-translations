@@ -66,6 +66,7 @@ return [
         "group" => "Translations",
         "icon" => "heroicon-o-translate",
         "sort" => 10,
+        "url" => 'admin/translations/change'
     ],
 
     /*
