@@ -17,7 +17,7 @@ class CreateLanguageLinesTable extends Migration
             $table->bigIncrements('id');
             $table->string('group');
             $table->index('group');
-            $table->string('key');
+            $table->text('key');
             $table->jsonb('text');
             $table->jsonb('metadata')->nullable();
             $table->string('namespace')->default('*');
