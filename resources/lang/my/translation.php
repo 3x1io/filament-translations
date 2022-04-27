@@ -1,7 +1,12 @@
 <?php
 
 return [
-    "title" => "ဘာသာစကား",
+    "title" => [
+        "home" => "ဘာသာစကား",
+        "list" => "ဘာသာစကား",
+        "create" => "Create ဘာသာစကား",
+        "edit" => "Edit ဘာသာစကား",
+    ],
     "label" => "ဘာသာစကား",
     "group" => "အုပ်စု",
     "key" => "အဓိကသော့ချက်",
@@ -14,5 +19,13 @@ return [
     "modal" => [
         "heading" => "ဘာသာစကားပြောင်းပါ",
         "button" => "ပြောင်းပါ",
+        "setting" => "Settings",
+        "select" => "Language",
+    ],
+    "lang" => [
+        "ar" => "Arabic",
+        "en" => "English",
+        "pt_BR" => "Português (Brasil)",
+        "my" => "Burmese",
     ]
 ];

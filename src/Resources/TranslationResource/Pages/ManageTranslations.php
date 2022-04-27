@@ -17,7 +17,7 @@ class ManageTranslations extends ManageRecords
 
     protected function getTitle(): string
     {
-        return trans('translation.title');
+        return trans('filament-translations::translation.title.home');
     }
 
     protected function getActions(): array
@@ -26,15 +26,15 @@ class ManageTranslations extends ManageRecords
             ButtonAction::make('scan')
                 ->icon('heroicon-o-document-search')
                 ->action('scan')
-                ->label(trans('translation.scan')),
+                ->label(trans('filament-translations::translation.scan')),
             ButtonAction::make('settings')
-                ->label('Settings')
+                ->label(trans('filament-translations::translation.modal.setting'))
                 ->icon('heroicon-o-cog')
-                ->modalHeading(trans('translation.modal.heading'))
-                ->modalButton(trans('translation.modal.button'))
+                ->modalHeading(trans('filament-translations::translation.modal.heading'))
+                ->modalButton(trans('filament-translations::translation.modal.button'))
                 ->form([
                     Select::make('language')
-                        ->label('Language')
+                        ->label(trans('filament-translations::translation.modal.select'))
                         ->default(auth()->user()->lang)
                         ->options(config('filament-translations.locals'))
                         ->required(),
@@ -46,7 +46,7 @@ class ManageTranslations extends ManageRecords
                     $user->save();
 
                     session()->flash('notification', [
-                        'message' => __(trans('translation.notification') . $user->lang),
+                        'message' => __(trans('filament-translations::translation.notification') . $user->lang),
                         'status' => "success",
                     ]);
 
@@ -60,6 +60,6 @@ class ManageTranslations extends ManageRecords
         $scan = new SaveScan();
         $scan->save();
 
-        $this->notify('success', trans('translation.loaded'));
+        $this->notify('success', trans('filament-translations::translation.loaded'));
     }
 }

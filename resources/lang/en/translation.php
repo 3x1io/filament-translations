@@ -1,7 +1,12 @@
 <?php
 
 return [
-    "title" => "Translations",
+    "title" => [
+        "home" => "Translations",
+        "list" => "Translations",
+        "create" => "Create Translation",
+        "edit" => "Edit Translation",
+    ],
     "label" => "Translations",
     "group" => "Group",
     "key" => "Key",
@@ -14,5 +19,13 @@ return [
     "modal" => [
         "heading" => "Update current language",
         "button" => "Save, language",
+        "setting" => "Settings",
+        "select" => "Language",
+    ],
+    "lang" => [
+        "ar" => "Arabic",
+        "en" => "English",
+        "pt_BR" => "Português (Brasil)",
+        "my" => "Burmese",
     ]
 ];

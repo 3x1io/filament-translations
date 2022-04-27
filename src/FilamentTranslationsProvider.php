@@ -25,12 +25,14 @@ class FilamentTranslationsProvider extends PluginServiceProvider
     {
         parent::boot();
 
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-translations');
+
         if (config('filament-translations.show-switcher')) {
             Filament::registerNavigationItems([
                 NavigationItem::make()
                     ->group(config('filament-translations.languages-switcher-menu.group'))
                     ->icon(config('filament-translations.languages-switcher-menu.icon'))
-                    ->label(trans('translation.menu'))
+                    ->label(trans('filament-translations::translation.menu'))
                     ->sort(config('filament-translations.languages-switcher-menu.sort'))
                     ->url(url('admin/translations/change')),
             ]);
@@ -41,12 +43,13 @@ class FilamentTranslationsProvider extends PluginServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../resources' => resource_path(),
+            __DIR__ . '/../resources/lang' => resource_path('lang/vendor/filament-translations'),
         ], 'filament-translations');
 
         $this->publishes([
             __DIR__ . '/../config' => config_path(),
         ], 'filament-translations-config');
+
 
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');

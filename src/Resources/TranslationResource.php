@@ -17,15 +17,26 @@ class TranslationResource extends Resource
 
     protected static ?string $slug = 'translations';
 
-    protected static ?string $navigationIcon = 'heroicon-o-globe';
-
     protected static ?string $recordTitleAttribute = 'key';
-
-    protected static ?string $navigationGroup = 'Translations';
 
     protected static function getNavigationLabel(): string
     {
-        return trans('translation.label');
+        return trans('filament-translations::translation.label');
+    }
+
+    protected static function getNavigationGroup(): ?string
+    {
+        return config('filament-translations.languages-switcher-menu.group');
+    }
+
+    protected static function getNavigationIcon(): string
+    {
+        return config('filament-translations.languages-switcher-menu.icon');
+    }
+
+    protected function getTitle(): string
+    {
+        return trans('filament-translations::translation.title.home');
     }
 
     public static function form(Form $form): Form
@@ -36,24 +47,28 @@ class TranslationResource extends Resource
             array_push(
                 $schema,
                 Forms\Components\TextInput::make('text.' . $key)
-                    ->label(ucfirst($lang))
+                    ->label(trans('filament-translations::translation.lang.' . $key))
                     ->required(),
             );
         }
         return $form
             ->schema([
                 Forms\Components\TextInput::make('group')
+                    ->label(trans('filament-translations::translation.group'))
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('namespace')
+                    ->label(trans('filament-translations::translation.namespace'))
                     ->required()
                     ->default('*')
                     ->maxLength(255),
                 Forms\Components\TextInput::make('key')
+                    ->label(trans('filament-translations::translation.key'))
                     ->required()
                     ->maxLength(255),
 
                 Forms\Components\Builder\Block::make('text')
+                    ->label(trans('filament-translations::translation.text'))
                     ->schema($schema),
             ]);
     }
@@ -63,15 +78,15 @@ class TranslationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('group')
-                    ->label(trans('translation.group'))
+                    ->label(trans('filament-translations::translation.group'))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('key')
-                    ->label(trans('translation.key'))
+                    ->label(trans('filament-translations::translation.key'))
                     ->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('text')->label(trans('translation.text')),
-                Tables\Columns\TextColumn::make('created_at')->label(trans('global.created_at'))
+                Tables\Columns\TextColumn::make('text')->label(trans('filament-translations::translation.text')),
+                Tables\Columns\TextColumn::make('created_at')->label(trans('filament-translations::global.created_at'))
                     ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')->label(trans('global.updated_at'))
+                Tables\Columns\TextColumn::make('updated_at')->label(trans('filament-translations::global.updated_at'))
                     ->dateTime(),
             ])
             ->filters([
