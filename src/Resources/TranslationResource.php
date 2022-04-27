@@ -32,10 +32,10 @@ class TranslationResource extends Resource
     {
         $schema = [];
 
-        foreach (config('filament-translations.locals') as $lang) {
+        foreach (config('filament-translations.locals') as $key => $lang) {
             array_push(
                 $schema,
-                Forms\Components\TextInput::make('text.' . $lang)
+                Forms\Components\TextInput::make('text.' . $key)
                     ->label(ucfirst($lang))
                     ->required(),
             );
