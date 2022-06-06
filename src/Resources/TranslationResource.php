@@ -85,9 +85,9 @@ class TranslationResource extends Resource
                     ->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('text')->label(trans('filament-translations::translation.text')),
                 Tables\Columns\TextColumn::make('created_at')->label(trans('filament-translations::global.created_at'))
-                    ->dateTime(),
+                    ->dateTime()->toggleable(),
                 Tables\Columns\TextColumn::make('updated_at')->label(trans('filament-translations::global.updated_at'))
-                    ->dateTime(),
+                    ->dateTime()->toggleable(),
             ])
             ->filters([
                 //
