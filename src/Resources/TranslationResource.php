@@ -26,12 +26,12 @@ class TranslationResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-translations.languages-switcher-menu.group');
+        return config('filament-translations.languages-switcher-menu.group', "Translations");
     }
 
     protected static function getNavigationIcon(): string
     {
-        return config('filament-translations.languages-switcher-menu.icon');
+        return config('filament-translations.languages-switcher-menu.icon', "heroicon-o-translate");
     }
 
     protected function getTitle(): string
@@ -44,12 +44,9 @@ class TranslationResource extends Resource
         $schema = [];
 
         foreach (config('filament-translations.locals') as $key => $lang) {
-            array_push(
-                $schema,
-                Forms\Components\TextInput::make('text.' . $key)
-                    ->label(trans('filament-translations::translation.lang.' . $key))
-                    ->required(),
-            );
+            $schema[] = Forms\Components\TextInput::make('text.' . $key)
+                ->label(trans('filament-translations::translation.lang.' . $key))
+                ->required();
         }
         return $form
             ->schema([
@@ -94,12 +91,6 @@ class TranslationResource extends Resource
             ]);
     }
 
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
 
     public static function getPages(): array
     {

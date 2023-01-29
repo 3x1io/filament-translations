@@ -14,7 +14,18 @@ return [
         resource_path('views'),
         base_path('vendor')
     ],
-    
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect
+    |--------------------------------------------------------------------------
+    |
+    | set the redirect path when change the language between selected path or next request
+    |
+    */
+    "redirect" => "next",
+
+
     /*
     |--------------------------------------------------------------------------
     | Excluded paths
@@ -23,7 +34,7 @@ return [
     | Put here any folder that you want to exclude that is inside of paths
     |
     */
-    
+
     "excludedPaths" => [
     ],
 
@@ -79,7 +90,8 @@ return [
         "group" => "Translations",
         "icon" => "heroicon-o-translate",
         "sort" => 10,
-        "url" => 'admin/translations/change'
+        "url" => 'admin/translations/change',
+        "position" => "user" //[user|navigation]
     ],
 
     /*

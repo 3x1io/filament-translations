@@ -4,6 +4,7 @@ namespace io3x1\FilamentTranslations\Resources\TranslationResource\Pages;
 
 use App\Models\User;
 use Filament\Forms\Components\Select;
+use Filament\Pages\Actions\Action;
 use Filament\Pages\Actions\ButtonAction;
 use Filament\Resources\Pages\ListRecords;
 use io3x1\FilamentTranslations\Services\SaveScan;
@@ -23,8 +24,8 @@ class ListTranslations extends ListRecords
     protected function getActions(): array
     {
         return [
-            ButtonAction::make('scan')->action('scan')->label(trans('translation.scan')),
-            ButtonAction::make('settings')
+            Action::make('scan')->action('scan')->label(trans('translation.scan')),
+            Action::make('settings')
                 ->label('Settings')
                 ->icon('heroicon-o-cog')
                 ->form([
@@ -50,7 +51,10 @@ class ListTranslations extends ListRecords
         ];
     }
 
-    public function scan()
+    /**
+     * @return void
+     */
+    public function scan(): void
     {
         $scan = new SaveScan();
         $scan->save();

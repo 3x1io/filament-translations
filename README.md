@@ -1,11 +1,10 @@
-![Screenshot of Login](./arts/cover.png)
+![Screenshot of Login](./arts/screenshot.png)
 
 # Filament Translations
 
 Manage your translation with DB and cache, you can scan your languages tags like `trans()`, `__()`, and get the string inside and translate them use UI.
 
 this plugin is build in [spatie/laravel-translation-loader](https://github.com/spatie/laravel-translation-loader)
-
 
 ## Screenshots
 
@@ -77,7 +76,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Credits
 
--   [3x1](https://github.com/3x1io)
+-   [Fady Mondy](https://github.com/3x1io)
 
 ## License
 

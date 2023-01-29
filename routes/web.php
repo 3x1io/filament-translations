@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +28,16 @@ Route::get(config('filament-translations.languages-switcher-menu.url'), function
         $user->save();
     }
 
-    session()->flash('notification', [
-        'message' => __(trans('filament-translations::translation.notification')),
-        'status' => "success",
-    ]);
+    Notification::make()
+        ->title(trans('filament-translations::translation.notification'))
+        ->icon('heroicon-o-check-circle')
+        ->iconColor('success')
+        ->send();
 
-    return back();
+    if(config('filament-translations.redirect') === 'next'){
+        return back();
+    }
+
+    return redirect()->to(config('filament-translations.redirect'));
+
 })->middleware('web');
