@@ -45,6 +45,7 @@ class TranslationResource extends Resource
         foreach (config('filament-translations.locals') as $key => $lang) {
             $schema[] = Forms\Components\RichEditor::make('text.'.$key)
                 ->label(trans('filament-translations::translation.lang.'.$key))
+                ->rules(["regex:/^(?!.*<script>).+$/"])
                 ->required();
         }
 
