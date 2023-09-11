@@ -3,13 +3,12 @@
 namespace io3x1\FilamentTranslations\Resources;
 
 use Filament\Forms;
+use Filament\Resources\Form;
+use Filament\Resources\Resource;
+use Filament\Resources\Table;
 use Filament\Tables;
 use io3x1\FilamentTranslations\Models\Translation;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
 use io3x1\FilamentTranslations\Resources\TranslationResource\Pages;
-
 
 class TranslationResource extends Resource
 {
@@ -26,12 +25,12 @@ class TranslationResource extends Resource
 
     protected static function getNavigationGroup(): ?string
     {
-        return config('filament-translations.languages-switcher-menu.group', "Translations");
+        return config('filament-translations.languages-switcher-menu.group', 'Translations');
     }
 
     protected static function getNavigationIcon(): string
     {
-        return config('filament-translations.languages-switcher-menu.icon', "heroicon-o-translate");
+        return config('filament-translations.languages-switcher-menu.icon', 'heroicon-o-translate');
     }
 
     protected function getTitle(): string
@@ -44,10 +43,11 @@ class TranslationResource extends Resource
         $schema = [];
 
         foreach (config('filament-translations.locals') as $key => $lang) {
-            $schema[] = Forms\Components\TextInput::make('text.' . $key)
-                ->label(trans('filament-translations::translation.lang.' . $key))
+            $schema[] = Forms\Components\Textarea::make('text.'.$key)
+                ->label(trans('filament-translations::translation.lang.'.$key))
                 ->required();
         }
+
         return $form
             ->schema([
                 Forms\Components\TextInput::make('group')
@@ -79,8 +79,11 @@ class TranslationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('key')
                     ->label(trans('filament-translations::translation.key'))
-                    ->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('text')->label(trans('filament-translations::translation.text')),
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('text')
+                      ->label(trans('filament-translations::translation.text'))
+                      ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->label(trans('filament-translations::global.created_at'))
                     ->dateTime()->toggleable(),
                 Tables\Columns\TextColumn::make('updated_at')->label(trans('filament-translations::global.updated_at'))
@@ -90,7 +93,6 @@ class TranslationResource extends Resource
                 //
             ]);
     }
-
 
     public static function getPages(): array
     {
